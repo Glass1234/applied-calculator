@@ -1,0 +1,70 @@
+.App {
+  padding: 60px 70px;
+  background: linear-gradient(180deg,
+  #B9BCD4 0%,
+  #C8B4D2 33%,
+  #D4D7E4 66%,
+  #B9BCD4 100%
+  );
+  background-size: 100% 300%;
+  animation: flow 6s ease-in-out infinite alternate;
+
+  .item-slot {
+    position: relative;
+    width: 57px;
+    height: 57px;
+    transform-style: preserve-3d;
+
+    .content {
+      pointer-events: none;
+    }
+
+    .item-left,
+    .item-top,
+    .item-right {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 32px;
+      height: 32px;
+      margin-left: -16px;
+      margin-top: -16px;
+      backface-visibility: hidden;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        image-rendering: pixelated;
+
+        -webkit-user-drag: none;
+        user-select: none;
+      }
+    }
+
+    .item-top {
+      /* Верхняя грань: кладем плоскость "на пол" (rotateX(90deg)) и применяем угол камеры */
+      transform: rotateX(-35.264deg) rotateY(-45deg) rotateX(90deg) translateZ(16px);
+      filter: brightness(1.1);
+    }
+    .item-left {
+      /* Левая грань (в локальных координатах — передняя, rotateY(0deg)) */
+      transform: rotateX(-35.264deg) rotateY(-45deg) rotateY(0deg) translateZ(16px);
+      filter: brightness(0.8);
+    }
+    .item-right {
+      /* Правая грань (в локальных координатах — боковая, rotateY(90deg)) */
+      transform: rotateX(-35.264deg) rotateY(-45deg) rotateY(90deg) translateZ(16px);
+      filter: brightness(0.5);
+    }
+  }
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 0 100%;
+  }
+}
+

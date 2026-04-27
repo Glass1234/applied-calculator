@@ -1,0 +1,13 @@
+.item-slot {
+  height: 57px;
+  width: 57px;
+  background: #14131726;
+  border-radius: 7px;
+  display: flex;
+  .content {
+    padding: 6px;
+  }
+  :hover {
+    background: rgba(255, 255, 255, 0);
+  }
+}
