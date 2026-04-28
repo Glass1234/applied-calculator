@@ -1,8 +1,9 @@
-.base-window {
+.main {
   border: 3px solid #C5BED8;
   border-radius: 30px;
   background-color: #0A080F66;
 
+  font-family: SF Pro Display, system-ui, sans-serif;
   color: #EBE9FF;
 
   box-shadow: 0 0 0 3px #0A080F, /* бордер */
@@ -19,6 +20,7 @@
   }
 
   .input {
+    font-family: SF Pro Display, system-ui, sans-serif;
     --text-field-border-width: 0px;
     --text-field-focus-color: #BBB8CD;
     height: 35px;

@@ -1,5 +1,5 @@
 import {TextField} from "@radix-ui/themes";
-import "./main.scss";
+import styles from "./BaseWindow.module.scss";
 import {MagnifyingGlassIcon} from "@radix-ui/react-icons";
 
 type BaseWindowProps = {
@@ -10,16 +10,17 @@ type BaseWindowProps = {
 };
 
 export default function BaseWindow({children, header, value, onChange}: BaseWindowProps) {
-    return <div className="base-window text-white">
+    return <div className={styles.main}>
         <div className="flex justify-between items-center gap-x-4">
-            {header && <div className="title font-sf">{header}</div>}
+            {header && <div className={styles.title}>{header}</div>}
             <TextField.Root value={value}
-                            onChange={(e) => onChange?.(e.target.value)} className='input' placeholder="Search...">
+                            onChange={(e) => onChange?.(e.target.value)} className={styles.input}
+                            placeholder="Search...">
                 <TextField.Slot>
                     <MagnifyingGlassIcon color="white" height="16" width="16"/>
                 </TextField.Slot>
             </TextField.Root>
         </div>
-        <div className="content">{children}</div>
+        <div className={styles.content}>{children}</div>
     </div>;
 }

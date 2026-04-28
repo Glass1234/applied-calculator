@@ -54,25 +54,32 @@ function App() {
                         header={<h3>Interface Terminal</h3>}>
                 <div className="grid grid-cols-9 gap-[9px]">
                     {filteredItems.map(item => (
-                        <ItemSlot className="item-slot" key={item.id} cellId={item.id}>
-                            <div className="item-left">
-                                <img
-                                    src={item.path}
-                                    alt={item.name}
-                                />
-                            </div>
-                            <div className="item-top">
-                                <img
-                                    src={item.path}
-                                    alt={item.name}
-                                />
-                            </div>
-                            <div className="item-right">
-                                <img
-                                    src={item.path}
-                                    alt={item.name}
-                                />
-                            </div>
+                        <ItemSlot key={item.id} cellId={item.id}>
+                            {item.type === 'block' && <div className="block-slot">
+                                <div className="block-left">
+                                    <img
+                                        src={item.path}
+                                        alt={item.name}
+                                    />
+                                </div>
+                                <div className="block-top">
+                                    <img
+                                        src={item.path}
+                                        alt={item.name}
+                                    />
+                                </div>
+                                <div className="block-right">
+                                    <img
+                                        src={item.path}
+                                        alt={item.name}
+                                    />
+                                </div>
+                            </div>}
+                            {item.type === "item" && <img
+                                className="item-slot"
+                                src={item.path}
+                                alt={item.name}
+                            />}
                         </ItemSlot>
                     ))}
                 </div>

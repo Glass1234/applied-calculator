@@ -1,4 +1,6 @@
-import './main.scss'
+import styles from './ItemSlot.module.scss';
+import * as React from "react";
+import type {DragEvent} from "react";
 
 type BaseWindowProps = React.HTMLAttributes<HTMLDivElement> & {
     children?: React.ReactNode;
@@ -6,19 +8,22 @@ type BaseWindowProps = React.HTMLAttributes<HTMLDivElement> & {
 };
 
 export default function ItemSlot({children, cellId}: BaseWindowProps) {
-    const handleDragStart = (e: MouseEvent) => {
-        e.dataTransfer.setData("sourceCellId", cellId);
+    const handleDragStart = (e: DragEvent) => {
+        // Записываем, из какой ячейки взяли предмет
+        e.dataTransfer.setData("sourceCellId", `${cellId}`);
         console.log(`---> Взяли из ячейки:`);
     };
 
-    const handleDragOver = (e: MouseEvent) => {
+    const handleDragOver = (e: DragEvent) => {
+        // Разрешаем сброс в эту ячейку
         e.preventDefault();
     };
 
-    const handleDrop = (e: MouseEvent) => {
+    const handleDrop = (e: DragEvent<HTMLDivElement>) => {
         e.preventDefault();
         const fromId = e.dataTransfer.getData("sourceCellId");
 
+        // Если id совпадают, значит уронили туда же, откуда взяли
         if (fromId === cellId.toString()) {
             console.log(`---  Вернули обратно в ячейку: ${cellId}`);
         } else {
@@ -27,12 +32,12 @@ export default function ItemSlot({children, cellId}: BaseWindowProps) {
     };
 
     return (
-        <div draggable
+        <div draggable={!!children}
              onDragStart={handleDragStart}
              onDragOver={handleDragOver}
              onDrop={handleDrop}
-             className="item-slot">
-            {children && <div className="content">{children}</div>}
+             className={styles.main}>
+            {children && <div className={styles.main__content}>{children}</div>}
         </div>
     )
 }
