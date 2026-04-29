@@ -4,6 +4,7 @@ import BaseWindow from "./components/BaseWindow/BaseWindow.tsx";
 import ItemSlot from "./components/ItemSlot/ItemSlot.tsx";
 import {v4 as uuidv4} from "uuid";
 import {useEffect, useMemo, useState} from "react";
+import arrow from "./assets/arrow.svg";
 import type {ItemBase, ItemOnJSON} from "./schemas/types.ts";
 
 function App() {
@@ -49,7 +50,7 @@ function App() {
     }, []);
 
     return (
-        <div className="App min-h-screen">
+        <div className="App min-h-screen flex gap-x-5">
             <BaseWindow value={search} onChange={setSearch}
                         header={<h3>Interface Terminal</h3>}>
                 <div className="grid grid-cols-9 gap-[9px]">
@@ -87,6 +88,29 @@ function App() {
                     {Array.from({length: 9}).map((_, index) => (
                         <ItemSlot key={index} cellId={uuidv4()}/>
                     ))}
+                </div>
+            </BaseWindow>
+            <BaseWindow
+                header={<h3>Fluid Processing Pattern Terminal</h3>}>
+                <div className="flex gap-x-7">
+                    <div className="grid grid-cols-4 gap-[9px] w-fit">
+                        {Array.from({length: 16}).map((_, index) => (
+                            <ItemSlot key={index} cellId={uuidv4()}/>
+                        ))}
+                    </div>
+                    <img src={arrow} alt=""/>
+                    <div className="flex flex-col gap-y-[9px]">
+                        {Array.from({length: 4}).map((_, index) => (
+                            <ItemSlot key={index} cellId={uuidv4()}/>
+                        ))}
+                    </div>
+                    <div className="flex flex-col gap-y-4 justify-center">
+                        <ItemSlot cellId={uuidv4()}/>
+                        <div className="flex justify-center">
+                            <img className="rotate-90" src={arrow} alt=""/>
+                        </div>
+                        <ItemSlot cellId={uuidv4()}/>
+                    </div>
                 </div>
             </BaseWindow>
         </div>

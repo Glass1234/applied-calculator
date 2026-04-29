@@ -11,15 +11,15 @@ type BaseWindowProps = {
 
 export default function BaseWindow({children, header, value, onChange}: BaseWindowProps) {
     return <div className={styles.main}>
-        <div className="flex justify-between items-center gap-x-4">
+        <div className="flex justify-between items-center gap-x-4 min-h-9">
             {header && <div className={styles.title}>{header}</div>}
-            <TextField.Root value={value}
-                            onChange={(e) => onChange?.(e.target.value)} className={styles.input}
-                            placeholder="Search...">
+            {onChange && <TextField.Root value={value}
+                                         onChange={(e) => onChange?.(e.target.value)} className={styles.input}
+                                         placeholder="Search...">
                 <TextField.Slot>
                     <MagnifyingGlassIcon color="white" height="16" width="16"/>
                 </TextField.Slot>
-            </TextField.Root>
+            </TextField.Root>}
         </div>
         <div className={styles.content}>{children}</div>
     </div>;
